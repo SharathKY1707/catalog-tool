@@ -1,44 +1,44 @@
 import streamlit as st
 
-st.set_page_config(page_title="Dashboard", page_icon="📊")
+st.set_page_config(page_title="Dashboard", page_icon="📊", layout="wide")
 
-st.title("📊 Dashboard")
+st.title("📊 Catalog Dashboard")
 
+# KPI Cards
 col1, col2, col3, col4 = st.columns(4)
 
-col1.metric("📦 Total SKU", "15,250")
-col2.metric("⏳ Pending", "320")
-col3.metric("✅ Completed", "14,900")
-col4.metric("❌ Errors", "30")
+col1.metric("📦 Total SKU", "0")
+col2.metric("✅ Completed", "0")
+col3.metric("⏳ Pending", "0")
+col4.metric("❌ Errors", "0")
 
 st.divider()
 
-st.subheader("Progress")
+left, right = st.columns([2,1])
 
-st.progress(92)
+with left:
+    st.subheader("📈 Processing Progress")
+    st.progress(0)
 
-st.write("92% of the catalog has been processed.")
+    st.subheader("📂 Recent Uploads")
 
-st.divider()
+    st.info("No files uploaded yet.")
 
-st.subheader("Quick Actions")
+with right:
+    st.subheader("⚠ Validation Summary")
 
-c1, c2, c3 = st.columns(3)
-
-with c1:
-    st.button("📂 Upload File", use_container_width=True)
-
-with c2:
-    st.button("✅ Validate", use_container_width=True)
-
-with c3:
-    st.button("📤 Generate Output", use_container_width=True)
+    st.write("Missing Images : 0")
+    st.write("Missing Brand : 0")
+    st.write("Duplicate SKU : 0")
+    st.write("Price Errors : 0")
 
 st.divider()
 
-st.subheader("Validation Summary")
+st.subheader("🚀 Quick Actions")
 
-st.write("• Missing Images : 15")
-st.write("• Missing Brand : 8")
-st.write("• Duplicate SKU : 2")
-st.write("• Price Errors : 5")
+c1,c2,c3,c4 = st.columns(4)
+
+c1.button("📂 Upload")
+c2.button("✅ Validate")
+c3.button("🔄 Mapping")
+c4.button("📤 Output")
